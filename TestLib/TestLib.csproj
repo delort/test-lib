@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Description>A dumb library that does nothing for testing purposes</Description>
+    <VersionPrefix>1.0.1</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>TimHeuer.TestLib</PackageId>
     <PackageReleaseNotes>Sample testlib packaging</PackageReleaseNotes>
