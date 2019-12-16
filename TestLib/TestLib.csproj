@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>TimHeuer.TestLib</PackageId>
+    <PackageReleaseNotes>Sample testlib packaging</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/timheuer/test-lib</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/timheuer/test-lib</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+</Project>
