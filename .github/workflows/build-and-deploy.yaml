@@ -1,9 +1,9 @@
 name: "Sign Test"
 
-on: [labeled]
-#  push:
-#    branches:
-#      - master
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -50,5 +50,8 @@ jobs:
         with:
           nuget-version: latest
 
-      - name: Publish to GPR
-        run: nuget 
+      - name: Setup NuGet GPR
+        run: nuget source Add -Name "GPR" -Source ${{ secrets.GPR_URL }} -UserName ${{ secrets.GITHUB_USERNAME }} -Password ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push to GPR
+        run: nuget push nupkg/*.nupkg -Source "GPR"
