@@ -44,24 +44,13 @@ jobs:
         with:
           name: nupkg
 
-      - name: Setup .NET SDK tools
-        uses: actions/setup-dotnet@v1.3.0
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.2
         with:
-          dotnet-version: '3.1.100'
-          source-url: ${{ secrets.GPR_URL }}
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         nuget-version: latest
 
-      - name: Push to GPR (using dotnet)
-        run: dotnet nuget push nupkg/*.nupkg -s ${{ secrets.GPR_URL }}
+      - name: Setup NuGet GPR
+        run: nuget source Add -Name "GPR" -Source ${{ secrets.GPR_URL }} -UserName ${{ secrets.GITHUB_USERNAME }} -Password ${{ secrets.GITHUB_TOKEN }}
 
-      #- name: Setup NuGet
-      #  uses: NuGet/setup-nuget@v1.0.2
-      #  with:
-      #   nuget-version: latest
-
-      #- name: Setup NuGet GPR
-      #  run: nuget source Add -Name "GPR" -Source ${{ secrets.GPR_URL }} -UserName ${{ secrets.GITHUB_USERNAME }} -Password ${{ secrets.GITHUB_TOKEN }}
-
-      #- name: Push to GPR
-      #  run: nuget push nupkg/*.nupkg -Source "GPR"
+      - name: Push to GPR
+        run: nuget push nupkg/*.nupkg -Source "GPR"
