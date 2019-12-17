@@ -53,7 +53,7 @@ jobs:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push to GPR (using dotnet)
-        run: dotnet nuget push nupkg/*.nupkg
+        run: dotnet nuget push nupkg/*.nupkg -s ${{ secrets.GPR_URL }}
 
       #- name: Setup NuGet
       #  uses: NuGet/setup-nuget@v1.0.2
