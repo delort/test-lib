@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description>A dumb library that does nothing for testing purposes</Description>
-    <VersionPrefix>1.0.3</VersionPrefix>
+    <VersionPrefix>1.0.4</VersionPrefix>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>TimHeuer.TestLib</PackageId>
     <PackageReleaseNotes>Sample testlib packaging</PackageReleaseNotes>

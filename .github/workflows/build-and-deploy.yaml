@@ -33,6 +33,16 @@ jobs:
       with:
         name: nupkg
         path: finalpackage
+    
+    - name: Get version
+      uses: mavrosxristoforos/get-xml-info@1.0
+      id: get_version
+      with:
+        xml-file: TestLib/TestLib.csproj
+        xpath: '//VersionPrefix'
+
+    - name: Echo version
+      run: echo ${{ steps.get_version.outputs.info }}
 
   deploy:
     needs: build
