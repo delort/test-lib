@@ -10,7 +10,6 @@ jobs:
     if: github.event_name == 'push' && contains(toJson(github.event.commits), '***NO_CI***') == false && contains(toJson(github.event.commits), '[ci skip]') == false && contains(toJson(github.event.commits), '[skip ci]') == false
     name: Build Package
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
     - name: Setup .NET Core SDK
@@ -69,3 +68,13 @@ jobs:
 
       - name: Push to GPR (using dotnet)
         run: dotnet nuget push nupkg/*.nupkg -s ${{ secrets.GPR_URL }}
+
+  tag_and_release:
+    needs: build
+    name: Tag and release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tag
+        run: git tag ${{ jobs.build.steps.get_version.outputs.info }} -a
+      - name: Push tag
+        run: git push origin --tags
