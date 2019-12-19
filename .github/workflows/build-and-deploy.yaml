@@ -43,6 +43,11 @@ jobs:
     - name: Echo version
       run: echo ${{ steps.get_version.outputs.info }}
 
+    - name: Tag
+      run: git tag ${{ steps.get_version.outputs.info }} -a
+    - name: Push tag
+      run: git push origin --tags
+
   deploy:
     needs: build
     name: Deploy Packages
@@ -68,13 +73,3 @@ jobs:
 
       - name: Push to GPR (using dotnet)
         run: dotnet nuget push nupkg/*.nupkg -s ${{ secrets.GPR_URL }} --skip-duplicate
-
-  tag_and_release:
-    needs: build
-    name: Tag and release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Tag
-        run: git tag ${{ jobs.build.steps.get_version.outputs.info }} -a
-      - name: Push tag
-        run: git push origin --tags
