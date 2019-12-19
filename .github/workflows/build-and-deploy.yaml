@@ -43,6 +43,12 @@ jobs:
     - name: Echo version
       run: echo ${{ steps.get_version.outputs.info }}
 
+    - name: Git config
+      run: git config user.email "tim@timheuer.com"
+    
+    - name: Git config 2
+      run: git config user.name "Tim Heuer (CI)"
+
     - name: Tag
       run: git tag ${{ steps.get_version.outputs.info }} -a
     - name: Push tag
