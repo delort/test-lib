@@ -53,4 +53,4 @@ jobs:
         run: nuget source Add -Name "GPR" -Source ${{ secrets.GPR_URL }} -UserName ${{ secrets.GITHUB_USERNAME }} -Password ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push to GPR
-        run: nuget push nupkg/*.nupkg -Source "GPR"
+        run: nuget push nupkg/*.nupkg -Source "GPR" -SkipDuplicate
