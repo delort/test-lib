@@ -59,11 +59,6 @@ jobs:
         with:
           name: nupkg
 
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.2
-        with:
-         nuget-version: latest
-
       - name: Setup .NET SDK tools
         uses: actions/setup-dotnet@master
         with:
