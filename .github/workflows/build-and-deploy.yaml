@@ -12,6 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Environment Testing
+      env:
+        SOME_VAR_NAME: the_value
+        ANOTHER_VAR: a_diff_value
+      run: echo $SOME_VAR_NAME {{ env.SOME_VAR_NAME }}
+      
     - uses: actions/checkout@v1
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
