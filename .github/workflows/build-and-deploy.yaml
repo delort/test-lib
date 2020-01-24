@@ -9,7 +9,10 @@ jobs:
   build:
     if: github.event_name == 'push' && contains(toJson(github.event.commits), '***NO_CI***') == false && contains(toJson(github.event.commits), '[ci skip]') == false && contains(toJson(github.event.commits), '[skip ci]') == false
     name: Build Package
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
 
     steps:
     - name: Environment Testing
@@ -17,7 +20,7 @@ jobs:
         SOME_VAR_NAME: the_value
         ANOTHER_VAR: a_diff_value
       run: echo $SOME_VAR_NAME {{ env.SOME_VAR_NAME }}
-      
+
     - uses: actions/checkout@v1
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
