@@ -3,11 +3,11 @@ name: "Build and Deploy"
 on:
   push:
     branches:
-      - master
+    - master
     paths-ignore:
-      - '**/*.md'
-      - '**/*.gitignore'
-      - '**/*.gitattributes'
+    - '**/*.md'
+    - '**/*.gitignore'
+    - '**/*.gitattributes'
 
 jobs:
   build:
