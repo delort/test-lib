@@ -40,11 +40,15 @@ jobs:
     - name: Pack
       run: dotnet pack TestLib --configuration Release -o finalpackage --no-build
 
+    - name: Platform echo
+      id: platforms
+      run: echo "::set-output name=platform::${PLATFORM}"
+
     # sign the NuGet Package -- can't do this without nuget.exe as dotnet CLI doesn't expose that
     - name: Publish artifact
       uses: actions/upload-artifact@master
       with:
-        name: nupkg
+        name: nupkg-${{steps.platforms.outputs.platform}}
         path: finalpackage
 
   deploy:
