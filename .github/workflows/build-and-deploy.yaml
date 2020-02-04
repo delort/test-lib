@@ -19,13 +19,8 @@ jobs:
         os: [ubuntu-latest, windows-latest]
 
     steps:
-    - name: Environment Testing
-      env:
-        SOME_VAR_NAME: the_value
-        ANOTHER_VAR: a_diff_value
-      run: echo $SOME_VAR_NAME {{ env.SOME_VAR_NAME }}
-
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
+    
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
       with:
@@ -40,15 +35,11 @@ jobs:
     - name: Pack
       run: dotnet pack TestLib --configuration Release -o finalpackage --no-build
 
-    - name: Platform echo
-      id: platforms
-      run: echo "::set-output name=platform::${PLATFORM}"
-
     # sign the NuGet Package -- can't do this without nuget.exe as dotnet CLI doesn't expose that
     - name: Publish artifact
       uses: actions/upload-artifact@master
       with:
-        name: nupkg-${{steps.platforms.outputs.platform}}
+        name: nupkg
         path: finalpackage
 
   deploy:
