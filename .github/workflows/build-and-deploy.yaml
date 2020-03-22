@@ -58,7 +58,7 @@ jobs:
          nuget-version: latest
 
       - name: Setup NuGet GPR
-        run: nuget source Add -Name "GPR" -Source ${{ secrets.GPR_URL }} -UserName ${{ secrets.GITHUB_USERNAME }} -Password ${{ secrets.GITHUB_TOKEN }}
+        run: nuget source Add -Name "GPR" -Source ${{ secrets.GPR_URL }} -UserName ${{ secrets.GITHUB_USERNAME }} -Password ${{ secrets.GITHUB_TOKEN }} -StorePasswordInClearText  
 
       - name: Push to GPR
         run: nuget push nupkg/*.nupkg -Source "GPR" -SkipDuplicate
